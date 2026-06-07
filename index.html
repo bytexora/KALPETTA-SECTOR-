@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="dtjrihGA1Yz-4VreNfpWMQ2KaB9NCkhwfW99B06F_cQ" />
+    <meta property="og:site_name" content="Sahityotsav Kalpetta">
+    <title>Sahityotsav 2026 | Premium Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&family=Amatic+SC:wght@400;700&family=Anton&family=Archivo+Black&family=Arimo:wght@400;700&family=Arvo:wght@400;700&family=Bangers&family=Barlow:wght@400;700&family=Bebas+Neue&family=Bitter:wght@400;700&family=Cabin:wght@400;700&family=Carter+One&family=Caveat:wght@400;700&family=Chewy&family=Cinzel:wght@400;700&family=Comfortaa:wght@400;700&family=Concert+One&family=Cormorant+Garamond:wght@400;700&family=Courgette&family=Crimson+Text:wght@400;700&family=Dancing+Script:wght@400;700&family=Dosis:wght@400;700&family=EB+Garamond:wght@400;700&family=Exo+2:wght@400;700&family=Fira+Sans:wght@400;700&family=Fjalla+One&family=Fredoka+One&family=Great+Vibes&family=Heebo:wght@400;700&family=Hind:wght@400;700&family=Inconsolata:wght@400;700&family=Indie+Flower&family=Inter:wght@400;700&family=Josefin+Sans:wght@400;700&family=Kanit:wght@400;700&family=Karla:wght@400;700&family=Lato:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Lobster&family=Lora:wght@400;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700;800;900&family=Mukta:wght@400;700&family=Mulish:wght@400;700&family=Noto+Serif:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&family=Oswald:wght@400;600;700&family=Oxygen:wght@400;700&family=PT+Sans:wght@400;700&family=PT+Serif:wght@400;700&family=Pacifico&family=Parisienne&family=Patua+One&family=Permanent+Marker&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700;800&family=Prompt:wght@400;700&family=Quicksand:wght@400;700&family=Raleway:wght@400;700&family=Righteous&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;700&family=Rubik:wght@400;700&family=Sacramento&family=Satisfy&family=Signika:wght@400;700&family=Space+Grotesk:wght@400;700&family=Tajawal:wght@400;700&family=Teko:wght@400;700&family=Titillium+Web:wght@400;700&family=Ubuntu:wght@400;700&family=Varela+Round&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/admin.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+    <style>
+        .template-list-card { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border-light); border-radius: 14px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s ease; }
+        .template-list-card:hover { border-color: rgba(59, 130, 246, 0.3); transform: translateY(-2px); }
+        .template-info { display: flex; align-items: center; gap: 15px; }
+        .template-thumb { width: 50px; height: 62px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-muted); }
+        .template-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .studio-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11, 17, 32, 0.98); backdrop-filter: blur(15px); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: space-between; padding: 20px; overflow-y:auto; }
+        .studio-workspace { position: relative; width: 340px; height: 426px; background: #0f172a; border: 2px dashed rgba(255,255,255,0.15); border-radius: 10px; margin: auto; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.6); flex-shrink: 0; }
+        .editor-bg-preview { position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; pointer-events: none; }
+        
+        /* 🌟 PixelLab Style Bounding Box 🌟 */
+        .v-box { position: absolute; border: 1px solid rgba(150, 150, 150, 0.8); box-sizing: border-box; touch-action: none; cursor: move; display: flex; align-items: center; justify-content: center; background: transparent; }
+        .v-box .handle { position: absolute; width: 10px; height: 10px; background: #fff; border: 1px solid #777; border-radius: 50%; z-index: 10; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        .v-box .handle-tl { top: -5px; left: -5px; } .v-box .handle-tr { top: -5px; right: -5px; }
+        .v-box .handle-bl { bottom: -5px; left: -5px; } .v-box .handle-br { bottom: -5px; right: -5px; }
+        .v-box .handle-ml { top: calc(50% - 5px); left: -5px; } .v-box .handle-mr { top: calc(50% - 5px); right: -5px; }
+
+        /* 🌟 Premium Dark Theme Studio UI 🌟 */
+        .pro-panel-dark { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 20px; width: 100%; }
+        .pro-panel-title { font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        
+        .pro-drop-wrapper { position: relative; width: 100%; margin-bottom: 12px; }
+        .pro-drop-btn { width: 100%; background: #0b1120; border: 1px solid #1e293b; color: #fff; padding: 12px 15px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .pro-drop-menu { display: none; position: absolute; bottom: 100%; left: 0; width: 100%; background: #1e293b; border: 1px solid #334155; border-radius: 8px; max-height: 250px; overflow-y: auto; z-index: 9999; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); margin-bottom: 8px; }
+        .pro-drop-menu.show { display: block; }
+        .pro-drop-item { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; cursor: pointer; font-size: 0.95rem; }
+        .pro-drop-item:hover { background: #3b82f6; color: #fff; }
+        
+        .pro-input { width: 100%; background: #0b1120; border: 1px solid #1e293b; color: #fff; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 800; text-align: center; outline: none; }
+        .color-group { display: flex; background: #0b1120; border: 1px solid #1e293b; border-radius: 8px; align-items: center; padding: 0 10px; justify-content: space-between; }
+        
+        .pro-slider { -webkit-appearance: none; width: 100%; height: 4px; background: #1e293b; border-radius: 5px; outline: none; }
+        .pro-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #3b82f6; cursor: pointer; }
+
+        /* Color Palette Modal */
+        .color-grid-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .color-swatch { width: 45px; height: 45px; border: 2px solid #ccc; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    </style>
+    
+    <script>
+        // 🌟 PRO UI & MASSIVE FONT ARRAY (100 Fonts) 🌟
+        const proFonts = [
+            "Montserrat", "Poppins", "Roboto", "Open Sans", "Lato", "Nunito", "Raleway", "Inter", "Quicksand", "Rubik", "Work Sans", "Fira Sans", "Josefin Sans", "Cabin", "Ubuntu", "Mukta", "Kanit", "Varela Round", "Comfortaa", "Exo 2", "Space Grotesk", "Titillium Web", "PT Sans", "Hind", "Arimo", "Dosis", "Barlow", "Mulish", "Oxygen", "Signika", "Karla", "Heebo", "Inconsolata", "Roboto Mono", 
+            "Arial", "Oswald", "Bebas Neue", "Anton", "Fjalla One", "Teko", "Righteous", "Permanent Marker", "Alfa Slab One", "Abril Fatface", "Concert One", "Fredoka One", "Patua One", "Carter One", "Archivo Black", "Bangers", "Chewy", "Prompt",
+            "Playfair Display", "Cinzel", "Merriweather", "Lora", "PT Serif", "Noto Serif", "Crimson Text", "Libre Baskerville", "EB Garamond", "Bitter", "Arvo", "Cormorant Garamond", 
+            "Dancing Script", "Pacifico", "Caveat", "Satisfy", "Great Vibes", "Courgette", "Lobster", "Amatic SC", "Indie Flower", "Parisienne", "Sacramento"
+        ];
+
+        function populateFontList() { let menu = document.getElementById('fontList'); if(!menu) return; let html = ''; proFonts.forEach(f => { html += `<div class="pro-drop-item" style="font-family: '${f}', sans-serif;" onclick="selectProFont('${f}')">${f}</div>`; }); menu.innerHTML = html; }
+        function toggleProDrop(id) { document.querySelectorAll('.pro-drop-menu').forEach(el => { if(el.id !== id) el.classList.remove('show'); }); document.getElementById(id).classList.toggle('show'); }
+        function selectProEl(val, text) { document.getElementById('elementSelect').value = val; document.getElementById('elSelectedText').innerText = text; document.getElementById('elList').classList.remove('show'); if(typeof loadElementSettings === 'function') loadElementSettings(); }
+        function selectProFont(fontName) { document.getElementById('fontSelect').value = fontName; let textEl = document.getElementById('fontSelectedText'); textEl.innerText = fontName; textEl.style.fontFamily = fontName; document.getElementById('fontList').classList.remove('show'); if(typeof updateStudioFonts === 'function') updateStudioFonts(); }
+        
+        document.addEventListener('click', function(e) { if(!e.target.closest('.pro-drop-wrapper')) { document.querySelectorAll('.pro-drop-menu').forEach(el => el.classList.remove('show')); } });
+        window.addEventListener('DOMContentLoaded', () => { populateFontList(); });
+
+        function showToast(msg, type='success') { const c = document.getElementById('toast-container'); if(!c) return; const t = document.createElement('div'); t.className = `toast ${type}`; t.innerHTML = `<i class="fa-solid fa-${type==='success'?'circle-check':'circle-xmark'}"></i> <span>${msg}</span>`; c.appendChild(t); setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3000); }
+        function showSection(id) { ['home', 'results', 'gallery', 'login', 'admin-panel', 'about'].forEach(s => { let el = document.getElementById(s); if(el) { el.classList.remove('show-section'); el.classList.add('hidden'); } }); let target = document.getElementById(id); if(target) { target.classList.remove('hidden'); target.classList.add('show-section'); } window.scrollTo(0,0); }
+        function toggleMenu() { let m = document.getElementById('mobileMenu'); if(m) { m.classList.contains('show') ? m.classList.remove('show') : m.classList.add('show'); } }
+        function navTo(id) { let m = document.getElementById('mobileMenu'); if(m) m.classList.remove('show'); showSection(id); }
+        function toggleAcc(id) { let b = document.getElementById(id.toString().includes('adm') ? id : 'acc-'+id); let i = document.getElementById(id.toString().includes('adm') ? id.replace('body-','icon-') : 'icon-acc-'+id); if(b && i) { if(b.classList.contains('show')) { b.classList.remove('show'); i.style.transform='rotate(0)'; } else { b.classList.add('show'); i.style.transform='rotate(180deg)'; } } }
+        function switchTab(tab) { document.getElementById('adminTabResults').classList.add('hidden'); document.getElementById('adminTabGallery').classList.add('hidden'); document.getElementById('adminTabTemplates').classList.add('hidden'); ['tabResBtn', 'tabGalBtn', 'tabTmpBtn'].forEach(b => { let btn = document.getElementById(b); if(btn) { btn.className = 'btn btn-glass flex-1 text-muted'; btn.style.background = 'rgba(255,255,255,0.1)'; } }); if(tab==='results') { document.getElementById('adminTabResults').classList.remove('hidden'); let btn = document.getElementById('tabResBtn'); btn.className = 'btn flex-1 bg-info text-white'; btn.style.background = 'var(--info)'; } else if(tab==='gallery') { document.getElementById('adminTabGallery').classList.remove('hidden'); let btn = document.getElementById('tabGalBtn'); btn.className = 'btn flex-1 text-white'; btn.style.background = 'var(--accent)'; } else if(tab==='templates') { document.getElementById('adminTabTemplates').classList.remove('hidden'); let btn = document.getElementById('tabTmpBtn'); btn.className = 'btn flex-1 text-white'; btn.style.background = 'var(--purple)'; } }
+        function closeModal(id) { let el = document.getElementById(id); if(el) el.style.display = 'none'; }
+        
+        // 🌟 Fixed openConfirm function 🌟
+        function openConfirm(title, desc, iconClass, type, actionFunction) { 
+            document.getElementById('modalTitle').innerText = title; 
+            document.getElementById('modalDesc').innerText = desc; 
+            document.getElementById('modalIcon').innerHTML = `<i class="${iconClass}"></i>`; 
+            let btn = document.getElementById('modalActionBtn'); 
+            btn.style.background = type === 'danger' ? 'var(--danger)' : (type === 'success' ? 'var(--accent)' : 'var(--primary)'); 
+            btn.onclick = actionFunction; 
+            document.getElementById('confirmModal').style.display = 'flex'; 
+        }
+
+        // 🌟 NEW: Lightbox Share & Download Functions 🌟
+        function shareCurrentImage() {
+            const img = document.getElementById('lightboxImage');
+            if (!img || !img.src) return showToast('No image to share', 'error');
+            const url = img.src;
+            if (navigator.share) {
+                navigator.share({ title: 'Sahityotsav Gallery', text: 'Check out this moment!', url: url })
+                    .catch(err => console.log('Share cancelled', err));
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast('Image URL copied to clipboard!', 'success');
+                }).catch(() => showToast('Unable to copy', 'error'));
+            }
+        }
+
+        function downloadCurrentImage() {
+            const img = document.getElementById('lightboxImage');
+            if (!img || !img.src) return showToast('No image to download', 'error');
+            const link = document.createElement('a');
+            link.href = img.src;
+            // Extract filename from URL or use default
+            let filename = 'sahityotsav_image.jpg';
+            if (img.src.includes('/')) {
+                let parts = img.src.split('/');
+                let last = parts.pop();
+                if (last && last.includes('.')) filename = last;
+            }
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Download started!', 'success');
+        }
+
+        // Attach event listeners after DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const shareBtn = document.getElementById('lbShareBtn');
+            const downloadBtn = document.getElementById('lbDownloadBtn');
+            if (shareBtn) shareBtn.onclick = shareCurrentImage;
+            if (downloadBtn) downloadBtn.onclick = downloadCurrentImage;
+        });
+    </script>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+    
+    <div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;"></div>
+
+    <div class="fixed-bg-decor"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div></div>
+    <nav class="navbar"><div class="container flex justify-between items-center w-full"><div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')"><div class="logo-icon">S</div><div><h1 class="nav-title">Sahityotsav <span class="text-accent">2026</span></h1><p class="nav-subtitle">Kalpetta Sector</p></div></div><button onclick="toggleMenu()" style="background: transparent; border: none; color: #ffffff; font-size: 1.8rem; cursor: pointer; outline: none; padding: 5px; display: block; z-index: 150;"><i class="fa-solid fa-bars"></i></button></div></nav>
+    <div id="mobileMenu" class="mobile-menu"><a href="javascript:void(0)" onclick="navTo('home')"><i class="fa-solid fa-house menu-icon text-muted"></i> Home</a><a href="javascript:void(0)" onclick="navTo('results')"><i class="fa-solid fa-trophy menu-icon text-gold"></i> Results</a><a href="javascript:void(0)" onclick="navTo('gallery')"><i class="fa-solid fa-images menu-icon text-info"></i> Gallery</a><a href="javascript:void(0)" onclick="navTo('about')"><i class="fa-solid fa-circle-info menu-icon text-purple"></i> About</a><div id="menuGuest" class="menu-divider"><a href="javascript:void(0)" onclick="navTo('login')" class="text-accent"><i class="fa-solid fa-lock menu-icon"></i> Admin Login</a></div><div id="menuAdmin" class="hidden menu-divider flex-col gap-2"><a href="javascript:void(0)" onclick="navTo('admin-panel')" class="text-info"><i class="fa-solid fa-shield-halved menu-icon"></i> Dashboard</a><a href="javascript:void(0)" onclick="logoutAdmin()" class="text-danger"><i class="fa-solid fa-right-from-bracket menu-icon"></i> Logout</a></div></div>
+
+    <main style="flex: 1;">
+        <section id="home" class="show-section"><div class="container text-center flex flex-col items-center justify-center" style="min-height: 70vh; padding-bottom: 40px;">
+            <img src="logo.png" alt="Sahityotsav Logo" onerror="this.src='https://via.placeholder.com/450x150/0B1120/3B82F6?text=Sahityotsav+Logo'" class="hero-logo" style="margin-top: 20px;">
+            <div class="flex gap-4 items-center justify-center flex-wrap mb-50"><button onclick="navTo('results')" class="btn btn-primary min-w-220"><i class="fa-solid fa-trophy"></i> View Live Results</button><button onclick="navTo('gallery')" class="btn btn-glass min-w-220"><i class="fa-regular fa-images"></i> Event Gallery</button></div>
+            <div class="grid-stats w-full"><div class="glass-panel p-25-15"><h3 class="stat-number">100<span class="text-accent">+</span></h3><p class="stat-label">Students</p></div><div class="glass-panel p-25-15"><h3 class="stat-number">140<span class="text-gold">+</span></h3><p class="stat-label">Programs</p></div><div class="glass-panel p-25-15"><h3 class="stat-number">05<span class="text-info">+</span></h3><p class="stat-label">Units</p></div><div class="glass-panel p-25-15"><h3 class="stat-number">06<span class="text-purple">+</span></h3><p class="stat-label">Stages</p></div></div>
+        </div></section>
+        <section id="results"><div class="container max-w-800" style="padding-bottom: 40px;"><h2 class="section-title"><i class="fa-solid fa-list-check text-accent mr-10"></i>Live Results</h2><div class="glass-panel flex flex-col gap-3 p-20 mb-30"><div class="input-row flex-wrap"><div class="custom-dropdown-container flex-1 min-w-200"><div class="admin-input flex justify-between items-center cursor-pointer m-0" onclick="toggleDrop('pubCatDrop')"><span id="pubCatLabel" class="text-muted">All Categories</span> <i class="fa-solid fa-chevron-down text-muted"></i></div><div id="pubCatDrop" class="custom-dropdown-menu"></div><input type="hidden" id="pubCatFilter" value=""></div><div class="custom-dropdown-container flex-1 min-w-200"><div class="admin-input flex justify-between items-center cursor-pointer m-0" onclick="toggleDrop('pubProgDrop')"><span id="pubProgLabel" class="text-muted">All Programs</span> <i class="fa-solid fa-chevron-down text-muted"></i></div><div id="pubProgDrop" class="custom-dropdown-menu"></div><input type="hidden" id="pubProgFilter" value=""></div></div><input type="text" id="pubSearch" onkeyup="filterPublicResults()" placeholder="Search program or name..." class="admin-input m-0"></div><div id="publicResultsList" class="flex flex-col gap-3"><div class="text-center text-accent p-40"><i class="fa-solid fa-spinner loader-spin fa-2x"></i></div></div></div></section>
+        <section id="gallery"><div class="container max-w-1000" style="padding-bottom: 40px;"><h2 class="section-title"><i class="fa-solid fa-images text-accent mr-10"></i>Event Gallery</h2><div id="publicGalleryGrid" class="grid-gallery"><div class="col-span-full text-center text-accent p-40"><i class="fa-solid fa-spinner loader-spin fa-2x"></i></div></div></div></section>
+        <section id="about"><div class="container text-center flex flex-col justify-center max-w-800" style="min-height: 70vh; padding-bottom: 40px;"><div class="icon-circle mx-auto mb-20 text-accent bg-accent-light" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; background: rgba(59, 130, 246, 0.1);"><i class="fa-solid fa-circle-info"></i></div><h2 class="font-extrabold text-center" style="font-size: 2.5rem; margin-bottom: 25px;">About <span class="text-accent">Sahityotsav</span></h2><div class="glass-panel p-30 text-muted leading-relaxed" style="font-size: 1.1rem; padding: 30px;">Sahityotsav is the premier arts and cultural festival organized by the SSF Kalpetta Sector. It serves as a vibrant platform for students to showcase their talents across various literary, artistic, and cultural disciplines.</div></div></section>
+        <section id="login"><div class="container flex justify-center items-center" style="min-height: 70vh; padding-bottom: 40px;"><div class="glass-panel text-center p-40-30 w-full max-w-400 shadow-xl" style="padding: 40px 30px;"><div class="icon-circle mx-auto text-accent bg-accent-light" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; background: rgba(59, 130, 246, 0.1); margin-bottom: 15px;"><i class="fa-solid fa-user-shield"></i></div><h3 class="font-bold mb-5" style="font-size: 1.6rem;">Admin Login</h3><p class="text-muted mb-25" style="font-size: 0.9rem;">Enter credentials to manage portal</p><input type="email" id="adminEmail" placeholder="Email Address" class="admin-input text-center mb-15"><input type="password" id="adminPass" placeholder="Password" class="admin-input text-center mb-25" style="letter-spacing: 2px;"><button id="loginBtn" onclick="verifyAdmin()" class="btn btn-primary w-full p-14">Login securely</button></div></div></section>
+                <section id="admin-panel">
+            <div class="container max-w-900" style="padding-bottom: 40px;">
+                <h2 class="section-title"><i class="fa-solid fa-shield-halved text-info mr-10"></i>Admin Dashboard</h2>
+                <div class="flex gap-2 mb-30 flex-wrap">
+                    <button id="tabResBtn" onclick="switchTab('results')" class="btn flex-1 bg-info text-white" style="font-size:0.85rem; padding:10px;">Results</button>
+                    <button id="tabGalBtn" onclick="switchTab('gallery')" class="btn btn-glass flex-1 text-muted" style="font-size:0.85rem; padding:10px;">Gallery</button>
+                    <button id="tabTmpBtn" onclick="switchTab('templates')" class="btn btn-glass flex-1 text-muted" style="font-size:0.85rem; padding:10px;">Templates</button>
+                </div>
+
+                <div id="adminTabResults">
+                    <div class="glass-panel p-25 mb-30" style="padding: 25px;">
+                        <h3 class="font-bold mb-20" style="font-size: 1.3rem;"><i class="fa-solid fa-circle-plus text-gold mr-8"></i>Add / Edit Result</h3>
+                        <div class="input-row mb-12">
+                            <input type="number" id="resNo" placeholder="No." class="admin-input w-small text-center text-gold font-bold m-0" style="font-size: 1.1rem;">
+                            <div class="custom-dropdown-container w-large">
+                                <div class="admin-input flex justify-between items-center cursor-pointer m-0" onclick="toggleDrop('admCatDrop')">
+                                    <span id="admCatLabel" class="font-bold truncate">Lower Primary</span> <i class="fa-solid fa-chevron-down text-muted"></i>
+                                </div>
+                                <div id="admCatDrop" class="custom-dropdown-menu"></div>
+                                <input type="hidden" id="admCat" value="Lower Primary">
+                            </div>
+                        </div>
+
+                        <div class="custom-dropdown-container w-full mb-25">
+                            <div class="admin-input flex justify-between items-center cursor-pointer m-0" onclick="toggleDrop('admProgDrop')">
+                                <span id="admProgLabel" class="text-muted truncate">Select Program</span> <i class="fa-solid fa-chevron-down text-muted"></i>
+                            </div>
+                            <div id="admProgDrop" class="custom-dropdown-menu"></div>
+                            <input type="hidden" id="admProg" value="">
+                        </div>
+
+                        <div class="flex-col gap-3 mb-25">
+                            <div class="rank-card" style="z-index: 30; position: relative;"><div class="rank-header" onclick="toggleAcc('body-adm-1')"><span class="font-bold">🥇 1st Prize</span><i class="fa-solid fa-chevron-down text-muted" id="icon-adm-1"></i></div><div id="body-adm-1" class="rank-body show" style="padding: 15px;"><div id="g1"></div><button onclick="addInput(1)" class="btn btn-glass w-full text-gold mt-10" style="border-style: dashed;">+ Add Student</button></div></div>
+                            <div class="rank-card" style="z-index: 20; position: relative;"><div class="rank-header" onclick="toggleAcc('body-adm-2')"><span class="font-bold">🥈 2nd Prize</span><i class="fa-solid fa-chevron-down text-muted" id="icon-adm-2"></i></div><div id="body-adm-2" class="rank-body" style="padding: 15px;"><div id="g2"></div><button onclick="addInput(2)" class="btn btn-glass w-full text-gold mt-10" style="border-style: dashed;">+ Add Student</button></div></div>
+                            <div class="rank-card" style="z-index: 10; position: relative;"><div class="rank-header" onclick="toggleAcc('body-adm-3')"><span class="font-bold">🥉 3rd Prize</span><i class="fa-solid fa-chevron-down text-muted" id="icon-adm-3"></i></div><div id="body-adm-3" class="rank-body" style="padding: 15px;"><div id="g3"></div><button onclick="addInput(3)" class="btn btn-glass w-full text-gold mt-10" style="border-style: dashed;">+ Add Student</button></div></div>
+                        </div>
+                        <button id="saveResBtn" onclick="confirmSaveResult()" class="btn btn-gold w-full p-14" style="font-size: 1rem;">Save Result</button>
+                    </div>
+
+                    <h3 class="font-bold mb-15" style="font-size: 1.3rem;"><i class="fa-solid fa-pen-to-square text-info mr-8"></i>Manage Saved Results</h3>
+                    <input type="text" id="admSearch" onkeyup="renderAdminResults()" placeholder="Search to edit/delete..." class="admin-input mb-20">
+                    <div id="adminResultsList" class="flex flex-col gap-3"></div>
+                </div>
+
+                <div id="adminTabGallery" class="hidden">
+                    <div class="glass-panel text-center p-30 mb-30" style="padding: 30px;">
+                        <input type="file" id="galleryImageInput" accept="image/*" class="admin-input mb-20 cursor-pointer" style="border-style: dashed; padding: 20px;">
+                        <button id="uploadGalBtn" onclick="uploadToGallery()" class="btn btn-primary w-full p-14">Upload to Gallery</button>
+                    </div>
+                    <h3 class="font-bold mb-15" style="font-size: 1.3rem;">Uploaded Photos</h3>
+                    <div id="adminGalleryGrid" class="grid-gallery"></div>
+                </div>
+
+                <div id="adminTabTemplates" class="hidden">
+                    <div class="glass-panel p-25 mb-30" style="padding:25px;">
+                        <button onclick="addNewTemplateSlot()" class="btn btn-primary mb-25" style="background:var(--purple); font-size:0.85rem; padding:8px 16px;"><i class="fa-solid fa-plus"></i> Add New Slot</button>
+                        <div id="templatesGridContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 25px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: auto;">
+        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0 0 8px 0;">&copy; 2026 SSF KALPETTA SECTOR. All rights reserved.</p>
+        <p style="color: #64748b; font-size: 0.8rem; margin: 0;">Powered by <i class="fa-solid fa-bolt" style="color: #10b981;"></i> <span style="color: #10b981; font-weight: 700; letter-spacing: 0.5px;">BytexoRa</span></p>
+    </footer>
+
+    <div id="layoutStudioModal" class="studio-modal">
+        <div style="width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom:10px;">
+            <div><h3 id="studioTitleLabel" style="font-size:1.15rem; font-weight:800; color:#fff; margin:0;">Layout Studio</h3><p id="studioSubtitleLabel" style="color:#94a3b8; font-size:0.75rem; margin-top:2px;">Typography, Spacing & Color Editor</p></div>
+            <button onclick="closeStudioWorkspace()" class="btn-icon" style="background:#1e293b; color:#fff; border-radius:50%; width:36px; height:36px;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="studio-workspace" id="studioWorkspaceBoard"></div>
+
+        <div style="width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 12px; margin-top:15px;">
+            
+            <div class="pro-panel-dark">
+                <div class="pro-panel-title"><i class="fa-solid fa-font" style="color:#3b82f6;"></i> Font & Color Styles</div>
+                
+                <div class="pro-drop-wrapper">
+                    <div class="pro-drop-btn" onclick="toggleProDrop('elList')"><span id="elSelectedText">Result Label (Top)</span><i class="fa-solid fa-chevron-down"></i></div>
+                    <div id="elList" class="pro-drop-menu">
+                        <div class="pro-drop-item" onclick="selectProEl('resText', 'Result Label (Top)')">Result Label (Top)</div>
+                        <div class="pro-drop-item" onclick="selectProEl('resNum', 'Result Number (01, 02..)')">Result Number (01, 02..)</div>
+                        <div class="pro-drop-item" onclick="selectProEl('cat', 'Category (e.g. Junior)')">Category (e.g. Junior)</div>
+                        <div class="pro-drop-item" onclick="selectProEl('prog', 'Program Name')">Program Name</div>
+                        <div class="pro-drop-item" onclick="selectProEl('name', 'Winner Names')">Winner Names</div>
+                        <div class="pro-drop-item" onclick="selectProEl('unit', 'Unit Names')">Unit Names</div>
+                    </div>
+                    <input type="hidden" id="elementSelect" value="resText">
+                </div>
+                
+                <div style="display: flex; gap: 8px; height: 45px; margin-top: 12px;">
+                    <div class="pro-drop-wrapper" style="flex: 2;">
+                        <div class="pro-drop-btn" onclick="toggleProDrop('fontList')" style="height: 100%;">
+                            <span id="fontSelectedText" style="font-family: 'Montserrat', sans-serif; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Montserrat</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="fontList" class="pro-drop-menu"></div>
+                        <input type="hidden" id="fontSelect" value="Montserrat">
+                    </div>
+                    
+                    <div style="flex: 0.8;"><input type="number" id="fontSizeInput" oninput="if(typeof updateStudioFonts === 'function') updateStudioFonts()" class="pro-input" placeholder="Size"></div>
+                    
+                    <div class="color-group">
+                        <div id="mainColorPreview" onclick="if(typeof openPremiumColorPicker === 'function') openPremiumColorPicker()" style="width: 25px; height: 25px; border-radius: 4px; background: #fff; cursor:pointer;" title="Choose Color"></div>
+                        <div style="width: 1px; height: 20px; background: #334155; margin: 0 8px;"></div>
+                        <button onclick="document.getElementById('colorImageUploader').click()" style="background:transparent; border:none; color:#cbd5e1; font-size:1rem; cursor:pointer;" title="Pick color from image">
+                            <i class="fa-solid fa-eye-dropper"></i>
+                        </button>
+                        <input type="file" id="colorImageUploader" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <hr style="border: 0; height: 1px; background: #1e293b; margin: 20px 0 15px 0;">
+
+                <div class="pro-panel-title"><i class="fa-solid fa-arrows-up-down" style="color:#f59e0b;"></i> Spacing Adjustments</div>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div><div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; margin-bottom: 5px;"><span>Gap: Result & Number</span> <span id="gapResNumVal" style="color:#fff;">0</span></div><input type="range" id="gapResNum" min="-50" max="150" value="0" oninput="if(typeof updateStudioGaps === 'function') updateStudioGaps()" class="pro-slider"></div>
+                    <div><div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; margin-bottom: 5px;"><span>Gap: Name & Unit</span> <span id="gapNameUnitVal" style="color:#fff;">0</span></div><input type="range" id="gapNameUnit" min="-20" max="100" value="5" oninput="if(typeof updateStudioGaps === 'function') updateStudioGaps()" class="pro-slider"></div>
+                    <div><div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; margin-bottom: 5px;"><span>Gap: Between Winners</span> <span id="gapWinnerVal" style="color:#fff;">0</span></div><input type="range" id="gapWinner" min="0" max="250" value="30" oninput="if(typeof updateStudioGaps === 'function') updateStudioGaps()" class="pro-slider"></div>
+                </div>
+            </div>
+
+            <label class="btn w-full" style="background:#4c1d95; color:#fff; font-size:0.85rem; padding:12px; cursor:pointer; margin:0; border-radius:8px; text-align:center;">
+                <i class="fa-solid fa-image" style="margin-right: 8px;"></i> Replace Background Image
+                <input type="file" id="studioImageUploaderInput" accept="image/*" style="display:none;">
+            </label>
+            <button onclick="closeStudioWorkspace()" class="btn w-full text-white" style="background:#2563eb; font-size:0.85rem; padding:12px; border-radius:8px;"><i class="fa-solid fa-circle-check" style="margin-right: 8px;"></i> Save & Exit Studio</button>
+        </div>
+    </div>
+
+    <div id="premiumColorPaletteModal" class="studio-modal" style="z-index: 6005; justify-content: center; background: rgba(0,0,0,0.7);">
+        <div style="background: #fff; width: 100%; max-width: 320px; border-radius: 8px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <h3 style="color: #000; margin-top: 0; margin-bottom: 20px; font-size: 1.3rem; font-family: sans-serif; font-weight: bold;">Select color</h3>
+            
+            <div class="color-grid-box">
+                <div class="color-swatch" style="background: #FF0000;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#FF0000')"></div>
+                <div class="color-swatch" style="background: #00FFFF;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#00FFFF')"></div>
+                <div class="color-swatch" style="background: #0000FF;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#0000FF')"></div>
+                <div class="color-swatch" style="background: #00FF00;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#00FF00')"></div>
+                <div class="color-swatch" style="background: #FF00FF;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#FF00FF')"></div>
+                <div class="color-swatch" style="background: #FFFF00;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#FFFF00')"></div>
+                <div class="color-swatch" style="background: #000000;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#000000')"></div>
+                <div class="color-swatch" style="background: #FFFFFF;" onclick="if(typeof pickPaletteColor === 'function') pickPaletteColor('#FFFFFF')"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
+                <label style="color: #3B82F6; font-weight: 600; cursor: pointer; font-family: sans-serif; opacity: 0.7;">
+                    Custom
+                    <input type="color" id="nativeHiddenColor" style="display:none;" onchange="if(typeof pickPaletteColor === 'function') pickPaletteColor(this.value)">
+                </label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #aaa; font-size: 0.9rem; font-family: sans-serif;">Chosen color</span>
+                    <div id="paletteChosenPreview" class="color-swatch" style="background: #6A0453; cursor: default; width:35px; height:35px;"></div>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; gap: 20px; margin-top: 25px;">
+                <button onclick="document.getElementById('premiumColorPaletteModal').style.display='none'" style="background:none; border:none; color:#555; font-weight:bold; cursor:pointer; font-size: 0.9rem;">CANCEL</button>
+                <button onclick="if(typeof confirmPaletteColor === 'function') confirmPaletteColor()" style="background:none; border:none; color:#0d9488; font-weight:bold; cursor:pointer; font-size: 0.9rem;">SET</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageColorPickerModal" class="studio-modal" style="z-index: 6010; background: rgba(0,0,0,0.85);">
+        <div style="width: 100%; max-width: 400px; background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <h3 style="color:#fff; margin:0; font-size:1.1rem;"><i class="fa-solid fa-eye-dropper text-accent"></i> Pick Color</h3>
+            <div style="position: relative; width: 100%; max-height: 300px; border: 1px dashed #334155; border-radius: 8px; overflow: hidden; display: flex; justify-content: center; align-items: center; background: #000;">
+                <canvas id="colorPickerCanvas" style="max-width: 100%; max-height: 300px; cursor: crosshair; touch-action: none;"></canvas>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px; width: 100%;">
+                <div id="pickedColorPreview" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #fff; background: #000000; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></div>
+                <div style="flex: 1; color: #fff; font-family: monospace; font-size: 1.1rem;" id="pickedColorHex">#000000</div>
+            </div>
+            <div style="display: flex; gap: 10px; width: 100%; margin-top: 5px;">
+                <button onclick="document.getElementById('imageColorPickerModal').style.display='none'" class="btn btn-glass" style="flex: 1; border-color:#334155; color:#fff;">Cancel</button>
+                <button onclick="if(typeof applyPickedColor === 'function') applyPickedColor()" class="btn btn-primary" style="flex: 1;">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="studio-modal" style="z-index: 9999; background: rgba(0,0,0,0.85); justify-content: center;">
+        <div style="background: #0f172a; width: 100%; max-width: 350px; border-radius: 12px; padding: 25px; text-align: center; border: 1px solid #1e293b; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div id="modalIcon" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(59, 130, 246, 0.1); color: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 15px auto;"></div>
+            <h3 id="modalTitle" style="color: #fff; margin-top: 0; margin-bottom: 10px; font-size: 1.25rem;">Confirm</h3>
+            <p id="modalDesc" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5;"></p>
+            <div style="display: flex; gap: 10px; width: 100%;">
+                <button onclick="closeModal('confirmModal')" class="btn btn-glass" style="flex: 1; border-color:#334155; color:#fff;">Cancel</button>
+                <button id="modalActionBtn" class="btn" style="flex: 1; color:#fff;">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 🌟 Lightbox Modal with HD Download & Share Buttons 🌟 -->
+    <div id="imageLightbox" class="studio-modal" style="z-index: 9999; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; padding: 0;">
+        <button onclick="closeModal('imageLightbox')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 35px; cursor: pointer; z-index: 10000; outline: none;">&times;</button>
+        
+        <img id="lightboxImage" src="" style="max-width: 95%; max-height: 80vh; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.8); object-fit: contain;">
+        
+        <!-- Action Buttons -->
+        <div style="position: absolute; bottom: 30px; display: flex; gap: 15px; z-index: 10000;">
+            <button id="lbShareBtn" class="btn text-white" style="background: #10b981; padding: 12px 25px; border-radius: 30px; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4); border:none; cursor:pointer; font-weight:600; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-share-nodes"></i> Share
+            </button>
+            <button id="lbDownloadBtn" class="btn text-white" style="background: #3b82f6; padding: 12px 25px; border-radius: 30px; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); border:none; cursor:pointer; font-weight:600; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-download"></i> HD Download
+            </button>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script><script src="js/data.js"></script><script src="js/dropdowns.js"></script><script src="js/public-filter.js"></script><script src="js/poster.js"></script><script src="js/public-render.js"></script><script src="js/auth.js"></script><script src="js/admin-form.js"></script><script src="js/admin-crud.js"></script><script src="js/admin-gallery.js"></script><script src="js/app.js"></script>
+</body>
+</html>
