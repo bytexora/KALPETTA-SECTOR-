@@ -1,0 +1,97 @@
+:root {
+    --bg-color: #0B1120;
+    --card-bg: #1E293B;
+    --glass-bg: rgba(30, 41, 59, 0.85);
+    /* Professional Blue Theme Colors */
+    --accent: #3B82F6; 
+    --accent-hover: #2563EB;
+    
+    --gold: #F59E0B;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --danger: #ef4444;
+    --info: #0ea5e9; /* Adjusted to contrast with main blue accent */
+    --purple: #8b5cf6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+/* Colors & Texts */
+.text-center { text-align: center; } 
+.text-accent { color: var(--accent); } 
+.text-gold { color: var(--gold); } 
+.text-muted { color: var(--text-muted); } 
+.text-info { color: var(--info); }
+.text-danger { color: var(--danger); }
+.text-purple { color: var(--purple); }
+.bg-info { background-color: var(--info); }
+.bg-whatsapp { background-color: #25D366; } /* Kept standard WhatsApp color for clarity */
+
+.font-bold { font-weight: 700; } 
+.font-extrabold { font-weight: 800; } 
+.font-black { font-weight: 900; }
+
+/* Flex & Layout */
+.flex { display: flex; } 
+.flex-col { flex-direction: column; } 
+.items-center { align-items: center; } 
+.justify-center { justify-content: center; } 
+.justify-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+
+.gap-2 { gap: 0.5rem; } 
+.gap-3 { gap: 0.75rem; } 
+.gap-4 { gap: 1rem; }
+
+.w-full { width: 100%; } 
+.min-w-200 { min-width: 200px; }
+.min-w-220 { min-width: 220px; }
+.max-w-400 { max-width: 400px; }
+.max-w-800 { max-width: 800px; }
+.max-w-900 { max-width: 900px; }
+.max-w-1000 { max-width: 1000px; }
+
+.hidden { display: none !important; }
+.truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Margins & Paddings */
+.m-0 { margin: 0; }
+.mb-5 { margin-bottom: 5px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-25 { margin-bottom: 25px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-50 { margin-bottom: 50px; }
+.mt-10 { margin-top: 10px; }
+.mr-8 { margin-right: 8px; }
+.mr-10 { margin-right: 10px; }
+
+.p-14 { padding: 14px; }
+.p-20 { padding: 20px; }
+.p-25 { padding: 25px; }
+.p-30 { padding: 30px; }
+.p-40 { padding: 40px; }
+.p-25-15 { padding: 25px 15px; }
+.p-40-30 { padding: 40px 30px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+section { display: none; padding-top: 100px; padding-bottom: 50px; min-height: 100vh; animation: fadeIn 0.4s ease-out; }
+section.show-section { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+.min-h-60vh { min-height: 60vh; }
+.min-h-70vh { min-height: 70vh; }
+
+.fixed-bg-decor { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; }
+.glow-orb { position: absolute; border-radius: 50%; filter: blur(150px); opacity: 0.15; }
+.orb-1 { width: 600px; height: 600px; background: #1e3a8a; top: -10%; left: -10%; }
+.orb-2 { width: 600px; height: 600px; background: #3b0764; bottom: -10%; right: -10%; }
